@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criptografar com CryptoJS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.js"></script>
+</head>
+<body>
+    <input type="password" id="secretKey" placeholder="Digite a chave secreta">
+    <input type="text" id="inputText" placeholder="Digite um texto para criptografar">
+    <button onclick="criptografar()">Criptografar</button>
+
+    <h2>Texto Criptografado:</h2>
+    <input type="text" id="encryptedText" readonly>
+    <button onclick="copiarTexto()">Copiar</button>
+    <a href="descriptografar.html">Ir para página de descriptografia</a>
+
+    <script>
+        function criptografar() {
+            const senhaSecreta = document.getElementById('secretKey').value;
+            const texto = document.getElementById('inputText').value;
+            const textoCriptografado = CryptoJS.AES.encrypt(texto, senhaSecreta).toString();
+            document.getElementById('encryptedText').value = textoCriptografado;
+        }
+
+        function copiarTexto() {
+            const encryptedTextField = document.getElementById('encryptedText');
+            encryptedTextField.select();
+            document.execCommand('copy');
+            alert("Texto criptografado copiado para a área de transferência!");
+        }
+    </script>
+</body>
+</html>

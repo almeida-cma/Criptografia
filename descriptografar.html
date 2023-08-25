@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descriptografar com CryptoJS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.js"></script>
+</head>
+<body>
+    <input type="password" id="secretKey" placeholder="Digite a chave secreta">
+    <input type="text" id="encryptedText" placeholder="Cole o texto criptografado aqui">
+    <button onclick="descriptografar()">Descriptografar</button>
+
+    <h2>Texto Descriptografado:</h2>
+    <input type="text" id="decryptedText" readonly>
+    <a href="criptografar.html">Voltar para página de criptografia</a>
+
+    <script>
+        function descriptografar() {
+            const senhaSecreta = document.getElementById('secretKey').value;
+            const textoCriptografado = document.getElementById('encryptedText').value;
+            const bytes = CryptoJS.AES.decrypt(textoCriptografado, senhaSecreta);
+            const textoOriginal = bytes.toString(CryptoJS.enc.Utf8);
+            document.getElementById('decryptedText').value = textoOriginal;
+        }
+    </script>
+</body>
+</html>
